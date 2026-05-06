@@ -138,10 +138,21 @@
             </div>
           </mat-slide-toggle>
         </div>
-        <div class="tb-form-row">
+        <div class="tb-form-panel stroked column">
           <mat-slide-toggle class="mat-slide fixed-title-width" formControlName="ignoreRequestBody">
             {{ 'rule-node-config.ignore-request-body' | translate }}
           </mat-slide-toggle>
+          @if(!restApiCallConfigForm.get('ignoreRequestBody').value) {
+            <div class="tb-form-hint tb-primary-fill mb-4" [innerHTML]="'rule-node-config.request-body-template-hint' | translate | safe: 'html'"></div>
+            <mat-form-field class="mat-block" subscriptSizing="dynamic" appearance="outline" floatLabel="always">
+              <mat-label translate>rule-node-config.request-body-template</mat-label>
+              <textarea matInput
+                        formControlName="requestBodyTemplate"
+                        class="tb-enable-vertical-resize"
+                        cdkTextareaAutosize
+                        cdkAutosizeMinRows="3"></textarea>
+            </mat-form-field>
+          }
         </div>
         <mat-form-field class="mat-block" subscriptSizing="dynamic" appearance="outline">
           <mat-label translate>rule-node-config.read-timeout</mat-label>
